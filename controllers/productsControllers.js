@@ -16,7 +16,20 @@ const getbyId = async (req, res) => {
       return res.status(404).json({ message: err.message });
   }
 };
+
+const create = async (req, res) => {
+  const { name, quantity } = req.body;
+  try {
+    const product = await productService.create(name, quantity);
+    
+    return res.status(201).json(product);
+  } catch (err) {
+      return res.status(409).json({ message: err.message });
+  }
+};
+
 module.exports = {
   getAll,
   getbyId,
+  create,
 };

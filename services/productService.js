@@ -17,7 +17,17 @@ const getbyId = async (id) => {
   return product;
 };
 
+const create = async (name, quantity) => {
+  const [productByName] = await productModel.getByName(name);
+  if (productByName) {
+    throw new Error('Product already exists');
+  }
+  const product = await productModel.create(name, quantity);
+  return product;
+};
+
 module.exports = {
   getAll,
   getbyId,
+  create,
 };
