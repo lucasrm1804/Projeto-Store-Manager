@@ -5,9 +5,8 @@ const productMiddle = require('../middlewares/PrductsMiddleware');
 const routes = express.Router();
 
 routes.get('/', productsControllers.getAll);
-
 routes.get('/:id', productsControllers.getbyId);
-
 routes.post('/', productMiddle, productsControllers.create);
+routes.put('/:id', productMiddle, productsControllers.updateProduct);
 
 module.exports = routes;
