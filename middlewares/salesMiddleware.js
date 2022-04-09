@@ -1,7 +1,7 @@
-const productsValidator = require('../helpers/productValidation');
+const salesValidator = require('../helpers/salesValidation');
 
 const productMiddle = (req, res, next) => {
-    const check = productsValidator(req.body);
+    const check = salesValidator(req.body);
     if (check) return res.status(check.status).send({ message: check.msg });
 
     next();

@@ -17,7 +17,20 @@ const getbyId = async (id) => {
   return sale;
 };
 
+const createSales = async (sales) => {
+  try {
+    const saleId = await salesModel.createSales(sales);
+    return {
+      id: saleId,
+      itemsSold: sales,
+    };
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getAll,
   getbyId,
+  createSales,
 };

@@ -15,13 +15,13 @@ const validName = (name) =>
   || validNameFormat(name);
 
 const validQtyInput = (qty) => {
-  if (!qty || qty.length < 1) {
+  if (qty === undefined) {
     return { status: 400, msg: '"quantity" is required' };
   }
 };
 
-const validQtyFormat = (qty) => {
-  if ((!Number.isInteger(qty)) || qty < 1) {
+const validQtyFormat = (qty) => { 
+  if ((!Number.isInteger(qty)) || (qty < 1)) {
     return { status: 422, msg: '"quantity" must be greater than or equal to 1' };
   }
 };
@@ -34,6 +34,4 @@ const validCreateInput = (body) =>
   validName(body.name)
   || validQty(body.quantity);
 
-module.exports = {
-  validCreateInput,
-};
+module.exports = validCreateInput;

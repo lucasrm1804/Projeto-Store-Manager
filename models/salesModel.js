@@ -16,11 +16,22 @@ const getById = async (id) => {
     inner join StoreManager.sales as sa on sale_id = sa.id
     where sale_id = ?
     order by sale_id, product_id`, [id]);
-    console.log(sale);
   return sale;
+};
+
+const createSales = async (sales) => {
+  const [{ insertId }] = await connection
+  .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW())');
+  await sales.map(async (sale) => {
+    await connection
+    .execute('INSERT INTO StoreManager.sale (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+      [insertId, sale.productId, sale.quantity]);
+  });
+  return insertId;
 };
 
 module.exports = {
   getAll,
   getById,
+  createSales,
 };
