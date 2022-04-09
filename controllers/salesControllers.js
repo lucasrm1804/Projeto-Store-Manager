@@ -19,7 +19,7 @@ const getbyId = async (req, res) => {
 
 const createSales = async (req, res) => {
   try {
-    const sales = await salesService.create(req.body);
+    const sales = await salesService.createSales(req.body);
     return res.status(201).json(sales);
   } catch (err) {
       return res.status(409).json({ message: err.message });

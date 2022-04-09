@@ -24,9 +24,10 @@ const createSales = async (sales) => {
   .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW())');
   await sales.map(async (sale) => {
     await connection
-    .execute('INSERT INTO StoreManager.sale (sale_id, product_id, quantity) VALUES (?, ?, ?)',
-      [insertId, sale.productId, sale.quantity]);
+    .execute(`INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
+      VALUES (?, ?, ?)`, [insertId, sale.productId, sale.quantity]);
   });
+  console.log(insertId);
   return insertId;
 };
 
