@@ -22,17 +22,24 @@ const getById = async (id) => {
 const createSales = async (sales) => {
   const [{ insertId }] = await connection
   .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW())');
-  await sales.map(async (sale) => {
+  const salesCadastradas = sales.map(async (sale) => {
     await connection
     .execute(`INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
       VALUES (?, ?, ?)`, [insertId, sale.productId, sale.quantity]);
   });
-  console.log(insertId);
+  await Promise.all(salesCadastradas);
   return insertId;
+};
+
+const updateSales = async (id, productId, quantity) => {
+  await connection.execute(`UPDATE StoreManager.sales_products
+  SET quantity = ?  WHERE sale_id = ? and product_id = ?`,
+  [quantity, id, productId]);
 };
 
 module.exports = {
   getAll,
   getById,
   createSales,
+  updateSales,
 };

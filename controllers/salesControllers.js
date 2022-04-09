@@ -27,12 +27,12 @@ const createSales = async (req, res) => {
 };
 
 const updateSales = async (req, res) => {
-  const { name, quantity } = req.body;
+  const [{ productId, quantity }] = req.body;
   const { id } = req.params;
   try {
-    await salesService.updateProduct(id, name, quantity);
+    await salesService.updateSales(id, productId, quantity);
     
-    return res.status(200).json({ id, name, quantity });
+    return res.status(200).json({ saleId: id, itemUpdated: [{ productId, quantity }] });
   } catch (err) {
       return res.status(404).json({ message: err.message });
   }
