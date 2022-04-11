@@ -8,10 +8,10 @@ const getAll = async (req, res) => {
   }  
 };
 
-const getbyId = async (req, res) => {
+const getById = async (req, res) => {
   try {
     const { id } = req.params;
-    return res.status(200).json(await salesService.getbyId(id));
+    return res.status(200).json(await salesService.getById(id));
   } catch (err) {
       return res.status(404).json({ message: err.message });
   }
@@ -40,7 +40,7 @@ const updateSales = async (req, res) => {
 
 module.exports = {
   getAll,
-  getbyId,
+  getById,
   createSales,
   updateSales,
 };

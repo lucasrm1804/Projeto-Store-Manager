@@ -9,7 +9,7 @@ const getAll = async () => {
   }  
 };
 
-const getbyId = async (id) => {
+const getById = async (id) => {
   const sale = await salesModel.getById(id);
   if (sale.length === 0) {
     throw new Error('Sale not found');
@@ -35,7 +35,7 @@ const updateSales = async (id, productId, quantity) => {
 
 module.exports = {
   getAll,
-  getbyId,
+  getById,
   createSales,
   updateSales,
 };

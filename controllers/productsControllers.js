@@ -8,10 +8,10 @@ const getAll = async (req, res) => {
   }  
 };
 
-const getbyId = async (req, res) => {
+const getById = async (req, res) => {
   try {
     const { id } = req.params;
-    return res.status(200).json(await productService.getbyId(id));
+    return res.status(200).json(await productService.getById(id));
   } catch (err) {
       return res.status(404).json({ message: err.message });
   }
@@ -52,7 +52,7 @@ const deleteById = async (req, res) => {
 
 module.exports = {
   getAll,
-  getbyId,
+  getById,
   create,
   updateProduct,
   deleteById,

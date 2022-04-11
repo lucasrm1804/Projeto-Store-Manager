@@ -5,7 +5,7 @@ const productMiddle = require('../middlewares/PrductsMiddleware');
 const routes = express.Router();
 
 routes.get('/', productsControllers.getAll);
-routes.get('/:id', productsControllers.getbyId);
+routes.get('/:id', productsControllers.getById);
 routes.post('/', productMiddle, productsControllers.create);
 routes.put('/:id', productMiddle, productsControllers.updateProduct);
 routes.delete('/:id', productsControllers.deleteById);

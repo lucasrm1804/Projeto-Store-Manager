@@ -9,7 +9,7 @@ const getAll = async () => {
   }  
 };
 
-const getbyId = async (id) => {
+const getById = async (id) => {
   const [product] = await productModel.getById(id);
   if (!product) {
     throw new Error('Product not found');
@@ -45,7 +45,7 @@ const deleteById = async (id) => {
 
 module.exports = {
   getAll,
-  getbyId,
+  getById,
   create,
   updateProduct,
   deleteById,
